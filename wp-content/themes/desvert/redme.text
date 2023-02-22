@@ -1,0 +1,15 @@
+                    <?php
+                        $DesVert_services = new WP_Query(array(
+                            'post_type' => 'desvert_services', 
+                            'posts_per_page' => -1, 
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'service_category',
+                                    'field'    => 'slug', 
+                                    'terms'    => 'taeq',
+                                ),
+                            )
+                        ));
+                        while($DesVert_services->have_posts()): the_post();
+                        endwhile;
+                    ?>
