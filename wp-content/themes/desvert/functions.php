@@ -5,6 +5,7 @@ require get_template_directory()."/inc/desvert_enquee_script.php";
 require get_template_directory()."/inc/desvert_register_sidebar.php";
 require get_template_directory()."/inc/desvert_menu_filter.php";
 require get_template_directory()."/inc/desvert_custom_header.php";
+require get_template_directory()."/inc/breadcrumb.php";
 require get_template_directory()."/lib/redux-core/framework.php";
 require get_template_directory()."/lib/sample/config.php";
 //Redux Plugin Include
@@ -105,3 +106,58 @@ function custom_taxonomy() {
 
 }
 add_action( 'init', 'custom_taxonomy', 0 );
+
+
+
+//Custom Add Option
+add_action( 'admin_menu', 'add_admin_page');
+function add_admin_page() {
+  // add top level menu page
+  add_menu_page(
+    'My Plugin Settings', //Page Title
+    'Redoy Islam', //Menu Title
+    'manage_options', //Capability
+    'my-plugin', //Page slug
+    'admin_page_html' //Callback to print html
+  );
+}
+//Admin page html callback
+//Print out html for admin page
+function admin_page_html() {
+	// check user capabilities
+	if ( ! current_user_can( 'manage_options' ) ) {
+	  return;
+	}
+	//Get the active tab from the $_GET param
+	$default_tab = null;
+	$tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
+	?>
+	<!-- Our admin page content should all be inside .wrap -->
+	<div class="wrap">
+	  <!-- Print the page title -->
+	  <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+	  <h1>DesVert Employee List's</h1>
+	  <table width="100%" cellspacing="0" border="1" class="table table-bordered">
+		<thead>
+			<tr>
+				<th colspan="5">DesVert Team List</th>
+			</tr>
+		</thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Employee ID</th>
+			<th>Team Name</th>
+			<th>Profile</th>
+		</tr>
+		<tr>
+			<td>01</td>
+			<td>MD REDOY ISLAM</td>
+			<td>10090</td>
+			<td>DesVert</td>
+			<td>Redoy</td>
+		</tr>
+	  </table>
+	</div>
+	<?php
+  }

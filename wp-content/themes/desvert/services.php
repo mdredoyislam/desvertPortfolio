@@ -1,11 +1,7 @@
 <?php
 /**
- * Template Name: Home
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
+ * Template Name: Services
+ * The template for displaying archive pages
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -14,55 +10,21 @@
 global $desvert_opt;
 get_header();
 ?>
-<section id="desvert-tagline">
-    <div class="shape-1"></div>
-    <div class="shape-2"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3 col-sm-12 offset-sm-0">
-                <div class="tagline-contents">
-                    <h3><?php echo $desvert_opt['desvert-tagline-sub-title']; ?></h3>
-                    <h1><?php echo $desvert_opt['desvert-tagline-title']; ?></h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="services-section">
+<?php 
+    while ( have_posts() ) : the_post();
+        get_template_part( 'template-parts/tpl_breadcrumb', 'page' );
+    endwhile;
+?>
+<section id="desvert-services-section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-sm-12">
-                <div class="row mb-4">
-                    <div class="col-lg-12 col-sm-12">
-                        <h4 class="section-sub-title"><?php echo __('our key services','desvert') ?></h4>
-                        <h3 class="section-title"><?php echo __('what we offer','desvert') ?></h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php
-                        $taxonomy = 'service_category';
-                        $terms = get_terms($taxonomy);
-                        if ( $terms && !is_wp_error( $terms ) ) :
-                            foreach ( $terms as $term ) { ?>
-                                <div class="col-lg-6">
-                                    <a href="<?php echo get_term_link($term->slug, $taxonomy); ?>" class="wrapper-link">
-                                        <div class="single-services-wrap">
-                                            <h4><?php echo $term->name; ?></h4>
-                                            <p><?php echo wp_trim_words( $term->description, 18, '...' ); ?></p>
-                                        </div>
-                                    </a>
-                                </div>
-                            <?php } 
-                        endif;
-                    ?>
-                </div>
+        <div class="row mb-5 clearfix">
+            <div class="col-lg-12">
+                <h4 class="section-sub-title"><?php echo esc_html__('Our Services','desvert'); ?></h4>
+                <h3 class="section-title"><?php echo esc_html__('DesVert Services','desvert'); ?></h3>
             </div>
-            <div class="col-lg-4"></div>
         </div>
-    </div>
-    <div class="services-slider-wrapper">
-        <div class="owl-carousel services-slider">
-            <?php
+        <div class="row mb-5 clearfix">
+        <?php
             if(have_posts()):
                 $DesVert_services = new WP_Query(array(
                     'post_type' => 'desvert_services',
@@ -72,69 +34,100 @@ get_header();
                     //'category_name' => $category_name,
                 ));
                 while ($DesVert_services->have_posts()) : $DesVert_services->the_post();
-            ?>
-            <div class="slider-item">
-                <?php the_post_thumbnail(); ?>
-                <h3 class="slider-item-text"><?php esc_html__(the_title(),'desvert'); ?></h3>
+        ?>
+        <div class="col-lg-4 mb-4">
+            <div class="single-services-wrap services-post-wrap">
+                <div class="services-thumb mb-2">
+                    <?php echo get_the_post_thumbnail(); ?>
+                </div>
+                <div class="services-post-content">
+                    <?php 
+                        the_title('<h4>','</h4>');
+                        $servicesShort = esc_html__( get_the_content('<p>','</p>') );
+                    ?>
+                    <p><?php echo wp_trim_words( $servicesShort, 18, '...' ); ?></p>
+                    <a class="btn" href="<?php the_permalink(); ?>">View More</a>
+                </div>
             </div>
-            <?php endwhile; endif; ?>
+        </div>
+        <?php
+                endwhile;
+            endif;
+        ?>
         </div>
     </div>
 </section>
-<section id="make-appoinment">
+<section id="about-dream-work">
     <div class="container">
         <div class="row">
             <div class="col-lg-11 offset-lg-1">
-                <h4 class="section-sub-title"><?php echo $desvert_opt['desvert-appoinment-subtitle']; ?></h4>
-                <h3 class="section-title"><?php echo $desvert_opt['desvert-appoinment-title']; ?></h3>
-                <button class="appoinment-btn" type="button" data-toggle="modal"><?php echo $desvert_opt['desvert-appoinment-button-text']; ?><i class="fas fa-arrow-right"></i></button>
+                <div class="row mb-5 align-items-center clearfix">
+                    <div class="col-lg-12">
+                        <h4 class="section-sub-title"><?php echo esc_html__('Team Works Makes','desvert'); ?></h4>
+                        <h3 class="section-title mb-3"><?php echo esc_html__('Team Works Makes the Dream Work!.','desvert'); ?></h3>
+                        <div class="team-text">
+                            <p>Nothing is going to stop our business.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-3">
+                        <div class="single-work-box-wrap">
+                            <div class="workIcon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="workText">
+                                <h3>Projects Completed by Our Experts.</h3>
+                            </div>
+                            <div class="work-total-number">
+                                <span class="number">2650</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-work-box-wrap">
+                            <div class="workIcon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <div class="workText">
+                                <h3>Client<br>Referral.</h3>
+                            </div>
+                            <div class="work-total-number">
+                                <span class="number">2650</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-work-box-wrap">
+                            <div class="workIcon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="workText">
+                                <h3>Years of<br>Experience.</h3>
+                            </div>
+                            <div class="work-total-number">
+                                <span class="number">2650</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-work-box-wrap">
+                            <div class="workIcon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="workText">
+                                <h3>100% Satisfied<br>Customers.</h3>
+                            </div>
+                            <div class="work-total-number">
+                                <span class="number">2650</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<div class="appoinment-poppup">
-	<div class="appoinment-poppup-form">
-		<button id="appoinment-close-btn" type="button" class="btn"><i class="fas fa-xmark"></i></button>
-		<h4 class="section-sub-title"><?php echo $desvert_opt['desvert-appoinment-form-subtitle']; ?></h4>
-		<h3 class="section-title"><?php echo $desvert_opt['desvert-appoinment-form-title']; ?></h3>
-        <?php
-            echo do_shortcode( '[contact-form-7 id="35" title="Make Appopiment"]' );
-        ?>
-<!-- 		<form>
-			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="name">Name</label>
-					<input type="text" class="form-control" id="name" placeholder="enter your name">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="phone">Phone</label>
-					<input type="text" class="form-control" id="phone" placeholder="enter your phone">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" placeholder="example@gmail.com">
-			</div>
-			<div class="form-group">
-				<label for="services">Our services</label>
-				<select name="services" id="services" class="form-control">
-					<option selected>Choose our services</option>
-					<option value="Email Newsletter Design">Email Newsletter Design</option>
-					<option value="Banner Ads Design">Banner Ads Design</option>
-					<option value="Publishing Design">Publishing Design</option>
-					<option value="UX/UI Design">UX/UI Design</option>
-					<option value="WordPress Development">WordPress Development</option>
-					<option value="Graphic Design">Graphic Design</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="message">Message</label>
-				<textarea class="form-control" id="message" rows="3" placeholder="message here....."></textarea>
-			</div>
-			<button type="submit" class="btn btn-primary">Order Now</button>
-		</form> -->
-	</div>
-</div>
 <section id="portfolio-gallery">
     <div class="portfolio-gallery-wrapper">
         <?php 
@@ -272,4 +265,3 @@ get_header();
 </section>
 <?php
 get_footer();
-?>

@@ -17,27 +17,17 @@ global $desvert_opt;
 				<div class="row align-items-center">
 					<div class="col-lg-3">
 						<div class="site-branding">
-							<?php
-								if ( is_front_page() && is_home() ) :
-									?>
-									<div class="site-logo">
-										<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-											<?php
-											if(isset($desvert_opt['home-one-logo'])){ ?>
-												<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
-											<?php }else{
-												the_custom_logo(); 
-											}
-											?>
-										</a>
-									</div>
+							<div class="site-logo">
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 									<?php
-								else :
+									if(isset($desvert_opt['home-one-logo'])){ ?>
+										<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
+									<?php }else{
+										the_custom_logo(); 
+									}
 									?>
-									<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-									<?php
-								endif;
-							?>
+								</a>
+							</div>
 						</div><!-- .site-branding -->
 					</div>
 					<div class="col-lg-9">
@@ -64,34 +54,24 @@ global $desvert_opt;
 				<div class="row">
 					<div class="col-lg-4 col-sm-12">
 						<div class="footer-widgets footer-widgets-1">
-							<h3>About us</h3>
+							<h3><?php echo $desvert_opt['footer-about-title']; ?></h3>
 							<div class="site-branding footer-mobile-logo d-none">
-								<?php
-									if ( is_front_page() && is_home() ) :
-										?>
-										<div class="site-logo">
-											<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-												<?php
-												if(isset($desvert_opt['home-one-logo'])){ ?>
-													<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
-												<?php }else{
-													the_custom_logo(); 
-												}
-												?>
-											</a>
-										</div>
+								<div class="site-logo">
+									<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 										<?php
-									else :
+										if(isset($desvert_opt['home-one-logo'])){ ?>
+											<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
+										<?php }else{
+											the_custom_logo(); 
+										}
 										?>
-										<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-										<?php
-									endif;
-								?>
+									</a>
+								</div>
 							</div><!-- .site-branding -->
 							<div class="footer-text">
-								<h4>We’re Creative and Professional</h4>
-								<p>Desvert is Highly experienced outsourcing company and served clients all over the world. We are specialized in creative designs, web design and development. We keep us updated with the latest trends and technologies.</p>
-								<a class="btn footer-btn" href="#">know more</a>
+								<h4><?php echo $desvert_opt['footer-about-sub-title']; ?></h4>
+								<p><?php echo $desvert_opt['footer-about-text']; ?></p>
+								<a class="btn footer-btn" href="<?php echo $desvert_opt['footer-about-btn-url']; ?>"><?php echo $desvert_opt['footer-about-btn-text']; ?></a>
 							</div>
 						</div>
 					</div>
@@ -99,45 +79,57 @@ global $desvert_opt;
 						<div class="footer-widgets footer-nav-sec">
 							<h3>useful links</h3>
 							<div class="footer-navigation">
-								<ul class="nav">
-									<li><a href="#"><i class="fas fa-angles-right"></i> about desvert</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> testimonials</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> fAQ’s</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> careers</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> contact us</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> view all service</a></li>
-								</ul>
-								<ul class="nav">
-									<li><a href="#"><i class="fas fa-angles-right"></i> email newsletter</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> banner ads design</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> publishing design</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> ui/ux design</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> wordpress development</a></li>
-									<li><a href="#"><i class="fas fa-angles-right"></i> graphic design</a></li>
-								</ul>
+								<?php
+									$footerMenuOne = wp_nav_menu(
+										array(
+											'theme_location'	=> "footermenuone",
+											'menu'				=> "footermenuone",
+											'menu_class'		=> "nav",
+											'menu_id'			=> "desvert-footer-menu",
+											'echo'              => false,
+											'container'         => false,
+										) 
+									);
+									$footerMenuOne = str_replace('</a>','<i class="fas fa-angles-right"></i></a>', $footerMenuOne);
+									echo $footerMenuOne;
+								?>
+								<?php
+									$footerMenuTwo = wp_nav_menu(
+										array(
+											'theme_location'	=> "footermenutwo",
+											'menu'				=> "footermenutwo",
+											'menu_class'		=> "nav",
+											'menu_id'			=> "desvert-footer-menu",
+											'echo'              => false,
+											'container'         => false,
+										) 
+									);
+									$footerMenuTwo = str_replace('</a>','<i class="fas fa-angles-right"></i></a>', $footerMenuTwo);
+									echo $footerMenuTwo;
+								?>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-3 col-sm-12">
 						<div class="footer-widgets">
-							<h3>want to touch with us?</h3>
-							<a target="_blank" href="https://api.whatsapp.com/send?phone=+8801714862596" class="whatsapp-wrap-link">
+							<h3><?php echo $desvert_opt['footer-wrapper-title']; ?></h3>
+							<a target="_blank" href="https://api.whatsapp.com/send?phone=<?php echo $desvert_opt['footer-whatsapp-number']; ?>" class="whatsapp-wrap-link">
 								<div class="contact-whatsapp">
-									<img src="<?php echo get_template_directory_uri(); ?>/img/whatsapp.png" alt="whatsapp">
+									<img src="<?php echo $desvert_opt['footer-whatsapp-icon-img']['url']; ?>" alt="whatsapp">
 									<div class="whatsapp-info">
-										<p>Whatsapp</p>
-										<h3>+8801714862596</h3>
+										<p><?php echo $desvert_opt['footer-whatsapp-title']; ?></p>
+										<h3><?php echo $desvert_opt['footer-whatsapp-number']; ?></h3>
 									</div>
 								</div>
 							</a>
 							<div class="contact-loc">
-								<h4>contact us</h4>
-								<p>meher plaza (4th floor), house - 13/a road - 05, dhaka 1205, Bangladesh</p>
+								<h4><?php echo $desvert_opt['footer-contact-title']; ?></h4>
+								<p><?php echo $desvert_opt['footer-contact-address']; ?></p>
 							</div>
 							<div class="contact-mail">
-								<a href="mailto:support@desvert.com" target="_blank">
-									<h4>Email</h4>
-									<p>support@desvert.com</p>
+								<a href="mailto:<?php echo $desvert_opt['footer-email']; ?>" target="_blank">
+									<h4><?php echo $desvert_opt['footer-email-title']; ?></h4>
+									<p><?php echo $desvert_opt['footer-email']; ?></p>
 								</a>
 							</div>
 						</div>

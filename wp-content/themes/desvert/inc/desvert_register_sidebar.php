@@ -2,13 +2,14 @@
 function desvert_widgets_init() {
 	register_sidebar( 
         array(
-            'name'          => __( 'Blog Sidebar 1', 'eiser' ),
-            'id'            => 'eiser-bloag-sidebar-1',
-            'description'   => __( 'Ths is our blog sidebar 1 description', 'eiser' ),
-            'before_widget' => '<aside class="single_sidebar_widget post_category_widget"><ul class="list cat-list">',
-            'after_widget'  => '</ul></aside>',
-            'before_title'  => '<h4 class="widget_title">',
-            'after_title'   => '</h4>',
+            'name'          => __( 'Footer Sidebar 1', 'eiser' ),
+            'id'            => 'footer-sidebar-1',
+            'description'   => __( 'DesVert Footer Sitebar 1', 'eiser' ),
+            'before_widget' => '<div class="footer-widgets footer-nav-sec">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h3>',
+            'after_title'   => '</h3>',
         ) 
     );
 }
+add_action('widgets_init', 'desvert_widgets_init');

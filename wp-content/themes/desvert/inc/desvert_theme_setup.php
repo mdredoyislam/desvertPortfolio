@@ -21,7 +21,8 @@ function desvert_setup() {
     add_editor_style( "/assets/css/editor-style.css" );
     //Menu Register
     register_nav_menu( "primary", __( "Primary Menu", "desvert" ) );
-    register_nav_menu( "headertopmenu", __( "Header Top Menu", "desvert" ) );
+    register_nav_menu( "footermenuone", __( "Footer menu One", "desvert" ) );
+	register_nav_menu( "footermenutwo", __( "Footer menu Two", "desvert" ) );
     //Image Size Support
     add_image_size("desvert-home-square",400,400,true);
 	add_theme_support(

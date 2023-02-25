@@ -31,28 +31,17 @@ global $desvert_opt;
 			<div class="row align-items-center">
 				<div class="col-lg-6 col-sm-6">
 					<div class="site-branding">
-						<?php
-						
-							if ( is_front_page() && is_home() ) :
-								?>
-								<div class="site-logo">
-									<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-										<?php
-										if(isset($desvert_opt['home-one-logo'])){ ?>
-											<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
-										<?php }else{
-											the_custom_logo(); 
-										}
-										?>
-									</a>
-								</div>
+						<div class="site-logo">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 								<?php
-							else :
+								if(isset($desvert_opt['home-one-logo'])){ ?>
+									<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
+								<?php }else{
+									the_custom_logo(); 
+								}
 								?>
-								<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-								<?php
-							endif;
-						?>
+							</a>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 d-block social-sm-none">
@@ -93,27 +82,17 @@ global $desvert_opt;
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="site-branding">
-					<?php
-						if ( is_front_page() && is_home() ) :
-							?>
-							<div class="site-logo">
-								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-									<?php
-									if(isset($desvert_opt['home-one-logo'])){ ?>
-										<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
-									<?php }else{
-										the_custom_logo(); 
-									}
-									?>
-								</a>
-							</div>
+					<div class="site-logo">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 							<?php
-						else :
+							if(isset($desvert_opt['home-one-logo'])){ ?>
+								<img src="<?php echo $desvert_opt['home-one-logo']['url']; ?>" alt="SiteLogo">
+							<?php }else{
+								the_custom_logo(); 
+							}
 							?>
-							<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-							<?php
-						endif;
-					?>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
