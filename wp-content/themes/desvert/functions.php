@@ -50,7 +50,7 @@ function custom_post_type() {
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'trackbacks', 'revisions', 'custom-fields', 'page-attributes', 'post-formats' ),
 		'taxonomies'            => array( 'service_category', 'post_tag' ),
-		'hierarchical'          => true,
+		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
@@ -72,9 +72,9 @@ add_action( 'init', 'custom_post_type', 0 );
 function custom_taxonomy() {
 
 	$labels = array(
-		'name'                       => _x( 'Services Categories', 'Taxonomy General Name', 'desvert' ),
+		'name'                       => _x( 'Services Category', 'Taxonomy General Name', 'desvert' ),
 		'singular_name'              => _x( 'Services Category', 'Taxonomy Singular Name', 'desvert' ),
-		'menu_name'                  => __( 'Services Categories', 'desvert' ),
+		'menu_name'                  => __( 'Services Category', 'desvert' ),
 		'all_items'                  => __( 'All Items', 'desvert' ),
 		'parent_item'                => __( 'Parent Item', 'desvert' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'desvert' ),
@@ -95,10 +95,10 @@ function custom_taxonomy() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
-		'show_admin_column'          => true,
+		'show_admin_column'          => false,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);

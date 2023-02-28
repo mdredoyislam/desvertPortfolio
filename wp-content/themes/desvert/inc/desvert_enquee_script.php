@@ -9,6 +9,7 @@ function desvert_scripts() {
     //wp_enqueue_style( "font-awesome", get_theme_file_uri( "/css/all.min.css" ), null, "1.0" );
     wp_enqueue_style( "owl-carousel", get_theme_file_uri( "/vendors/owl-carousel/owl.carousel.min.css" ), null, "1.0" );
     wp_enqueue_style( "simpleLightbox", get_theme_file_uri( "/vendors/lightbox/simpleLightbox.css" ), null, "1.0" );
+    wp_enqueue_style( "magnific-popup", get_theme_file_uri( "/css/magnific-popup.css" ), null, "1.0" );
     //wp_enqueue_style( "nice-select", get_theme_file_uri( "/vendors/nice-select/css/nice-select.css" ), null, "1.0" );
     //wp_enqueue_style( "animate", get_theme_file_uri( "/vendors/animate-css/animate.css" ), null, "1.0" );
     //wp_enqueue_style( "jquery-ui", get_theme_file_uri( "/vendors/jquery-ui/jquery-ui.css" ), null, "1.0" );
@@ -26,6 +27,7 @@ function desvert_scripts() {
     wp_enqueue_script( "font-awesome", get_theme_file_uri( "/js/all.min.js" ), array( "jquery" ), "1.0", true );
     //wp_enqueue_script( "stellar", get_theme_file_uri( "/js/stelar.js" ), array( "jquery" ), "1.0", true );
     wp_enqueue_script( "simpleLightbox", get_theme_file_uri( "/vendors/lightbox/simpleLightbox.min.js" ), array( "jquery" ), "1.0", true );
+    wp_enqueue_script( "magnific-popup", get_theme_file_uri( "/js/jquery.magnific-popup.js" ), array( "jquery" ), "1.0", true );
     //wp_enqueue_script( "nice-select", get_theme_file_uri( "/vendors/nice-select/js/jquery.nice-select.min.js" ), array( "jquery" ), "1.0", true );
     wp_enqueue_script( "imagesloaded", get_theme_file_uri( "/vendors/isotope/imagesloaded.pkgd.min.js" ), array( "jquery" ), "1.0", true );
     wp_enqueue_script( "isotope-min", get_theme_file_uri( "/vendors/isotope/isotope-min.js" ), array( "jquery" ), "1.0", true );

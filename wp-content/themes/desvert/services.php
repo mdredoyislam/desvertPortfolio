@@ -15,7 +15,41 @@ get_header();
         get_template_part( 'template-parts/tpl_breadcrumb', 'page' );
     endwhile;
 ?>
-<section id="desvert-services-section">
+<section id="desvert-services-list">
+    <div class="container">
+        <div class="row mb-5 clearfix">
+            <div class="col-lg-12">
+                <h4 class="section-sub-title"><?php echo esc_html__('Services Category','desvert'); ?></h4>
+                <h3 class="section-title"><?php echo esc_html__('Type Of Services','desvert'); ?></h3>
+            </div>
+        </div>
+        <div class="row mb-5 pb-5">
+            <?php
+                $taxonomy = 'service_category';
+                $terms = get_terms($taxonomy);
+                if ( $terms && !is_wp_error( $terms ) ) :
+                    foreach ( $terms as $term ) { ?>
+                        <div class="col-lg-4 mb-1">
+                            <div class="single-services-wrapper mt-4">
+                                <div class="services-icon-wrap">
+                                    <span class="services-icons">
+                                        <i class="fa-brands fa-apple"></i>
+                                    </span>
+                                </div>
+                                <div class="services-content">
+                                    <h3><?php echo $term->name; ?></h3>
+                                    <p><?php echo wp_trim_words( $term->description, 18, '...' ); ?></p>
+                                    <a class="btn" href="<?php echo get_term_link($term->slug, $taxonomy); ?>">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } 
+                endif;
+            ?>
+        </div>
+    </div>
+</section>
+<section id="desvert-services-section" class="services-section-page">
     <div class="container">
         <div class="row mb-5 clearfix">
             <div class="col-lg-12">
@@ -23,30 +57,32 @@ get_header();
                 <h3 class="section-title"><?php echo esc_html__('DesVert Services','desvert'); ?></h3>
             </div>
         </div>
-        <div class="row mb-5 clearfix">
+        <div class="row clearfix">
         <?php
             if(have_posts()):
                 $DesVert_services = new WP_Query(array(
                     'post_type' => 'desvert_services',
-                    'posts_per_page' =>10,
+                    'posts_per_page' =>6,
                     'order' => 'DESC',
                     'offset' => 0,
                     //'category_name' => $category_name,
                 ));
                 while ($DesVert_services->have_posts()) : $DesVert_services->the_post();
         ?>
-        <div class="col-lg-4 mb-4">
+        <div class="col-lg-4 single-services-colum">
             <div class="single-services-wrap services-post-wrap">
-                <div class="services-thumb mb-2">
+                <div class="services-thumb">
                     <?php echo get_the_post_thumbnail(); ?>
                 </div>
                 <div class="services-post-content">
-                    <?php 
-                        the_title('<h4>','</h4>');
-                        $servicesShort = esc_html__( get_the_content('<p>','</p>') );
-                    ?>
-                    <p><?php echo wp_trim_words( $servicesShort, 18, '...' ); ?></p>
-                    <a class="btn" href="<?php the_permalink(); ?>">View More</a>
+                    <div class="services-post-content-wrap">
+                        <?php 
+                            the_title('<h4>','</h4>');
+                            $servicesShort = esc_html__( get_the_content('<p>','</p>') );
+                        ?>
+                        <p><?php echo wp_trim_words( $servicesShort, 15, '...' ); ?></p>
+                        <a class="btn" href="<?php the_permalink(); ?>">View More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,77 +90,6 @@ get_header();
                 endwhile;
             endif;
         ?>
-        </div>
-    </div>
-</section>
-<section id="about-dream-work">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-11 offset-lg-1">
-                <div class="row mb-5 align-items-center clearfix">
-                    <div class="col-lg-12">
-                        <h4 class="section-sub-title"><?php echo esc_html__('Team Works Makes','desvert'); ?></h4>
-                        <h3 class="section-title mb-3"><?php echo esc_html__('Team Works Makes the Dream Work!.','desvert'); ?></h3>
-                        <div class="team-text">
-                            <p>Nothing is going to stop our business.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-3">
-                        <div class="single-work-box-wrap">
-                            <div class="workIcon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="workText">
-                                <h3>Projects Completed by Our Experts.</h3>
-                            </div>
-                            <div class="work-total-number">
-                                <span class="number">2650</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single-work-box-wrap">
-                            <div class="workIcon">
-                                <i class="fas fa-users-cog"></i>
-                            </div>
-                            <div class="workText">
-                                <h3>Client<br>Referral.</h3>
-                            </div>
-                            <div class="work-total-number">
-                                <span class="number">2650</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single-work-box-wrap">
-                            <div class="workIcon">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <div class="workText">
-                                <h3>Years of<br>Experience.</h3>
-                            </div>
-                            <div class="work-total-number">
-                                <span class="number">2650</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="single-work-box-wrap">
-                            <div class="workIcon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <div class="workText">
-                                <h3>100% Satisfied<br>Customers.</h3>
-                            </div>
-                            <div class="work-total-number">
-                                <span class="number">2650</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

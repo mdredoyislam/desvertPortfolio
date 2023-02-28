@@ -11,20 +11,38 @@ global $desvert_opt;
 get_header();
 ?>
 <?php 
-    while ( have_posts() ) : the_post();
+ /*   while ( have_posts() ) : the_post();
         get_template_part( 'template-parts/tpl_breadcrumb', 'page' );
     endwhile;
+*/
 ?>
+<section id="desvert-tagline">
+    <div class="shape-1"></div>
+    <div class="shape-2"></div>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-6 offset-lg-3 col-sm-12 offset-sm-0">
+                <div class="tagline-contents">
+                    <h3><?php the_title(); ?></h3>
+                    <h1><?php echo esc_html__('We’re Creative and Professional','desvert'); ?></h1>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <?php the_breadcrumb(); ?>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="about-section">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="about-text-wrapper">
-                    <h4 class="section-sub-title"><?php echo esc_html__('About DesVert ','desvert'); ?></h4>
-                    <h3 class="section-title"><?php echo esc_html__('We’re Creative and Professional','desvert'); ?></h3>
+                    <h4 class="section-sub-title"><?php echo esc_html__('A Creative Design & Development Agency','desvert'); ?></h4>
+                    <h3 class="section-title"><?php echo esc_html__('We make digital idea & SEO Marketing','desvert'); ?></h3>
                     <p class="quote">DesVert, a new concern of Creative IT, we are highly experienced outsourcing company and served many of our clients all over the world. clients all over the world.</p>
                     <p>We are specializes in creative services, web design and development, print media. We have training facilities for our employees. So that they stay updated with the latest trends and technologies.</p>
-                    <div class="about-counter">
+                    <!--<div class="about-counter">
                         <div class="row">
                             <div class="col-lg-4">
                                 <span class="counter"><span class="counterup">2650</span>+</span>
@@ -45,7 +63,7 @@ get_header();
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="nav nav-button"> 
@@ -63,20 +81,10 @@ get_header();
             <div class="col-lg-6">
                 <div class="about-right-wrap">
                     <div class="img">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/ceo.jpg" alt="CEO">
-                    </div>
-                    <div class="ceo-info-wrapper">
-                        <div class="ceo-info">
-                            <div class="icons">
-                                <i class="fa fa-quote-right" aria-hidden="true"></i>
-                            </div>
-                            <div class="ceo-quote">
-                                <p>Enhancing Customer Relation-ships via TechnologySolutions. CEO: Monir Hosen</p>
-                            </div>
-                            <div class="ceo-signature">
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/CEO_sign3.png" alt="CEO">
-                            </div>
-                        </div>
+                        <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/about.jpg" alt="about">
+                        <a class="popup-youtube" href="https://www.youtube.com/watch?v=c2VHlzenKrU">
+                            <i class="fas fa-play"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -174,15 +182,26 @@ get_header();
             </div>
             <div class="col-lg-5">
                 <div class="team-more-button text-end">
-                    <a href="#" class="btn btn-primary common-btn">others menbers</a>
+                    <a href="http://localhost/WP/DesVert/team/" class="btn btn-primary common-btn">others menbers</a>
                 </div>
             </div>
         </div>
         <div class="row clearfix">
+            <?php
+                if(have_posts()):
+                    $DesVert_teams = new WP_Query(array(
+                        'post_type' => 'teams',
+                        'posts_per_page' =>6,
+                        'order' => 'ASC',
+                        'offset' => 0,
+                        //'category_name' => $category_name,
+                    ));
+                    while ($DesVert_teams->have_posts()) : $DesVert_teams->the_post();
+            ?>
             <div class="col-lg-4 col-md-6 col-md-12 col-sm-12">
                 <div class="single-team-member">
                     <div class="img-holder">
-                        <img src="https://www.desvert.com/wp-content/uploads/2020/07/MonirHosen_DesVert1.jpg">
+                        <?php echo get_the_post_thumbnail(); ?>
                         <div class="share-box">
                             <a href="#"><i class="fas fa-share-alt"></i></a>
                             <ul class="fix">
@@ -193,106 +212,17 @@ get_header();
                         </div>
                     </div>
                     <div class="name text-center">
-                        <a href="https://www.desvert.com/monir-hosen/"><h3>Monir Hosen</h3></a>
-                        <p>CEO</p>
+                        <a href="<?php the_permalink(); ?>"><?php __( the_title('<h3>','</h3>'),'desvert' ); ?></a>
+                        <p>
+                            <?php __( the_field('designation'),'desvert' ); ?>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-md-12 col-sm-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="https://www.desvert.com/wp-content/uploads/2020/07/Untitled-1-2.jpg">
-                        <div class="share-box">
-                            <a href="#"><i class="fas fa-share-alt"></i></a>
-                            <ul class="fix">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="name text-center">
-                        <a href="https://www.desvert.com/monir-hosen/"><h3>Iqbal Ahmed</h3></a>
-                        <p>Operations Director (Web Media)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-md-12 col-sm-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="https://www.desvert.com/wp-content/uploads/2022/07/Untitled-1-1.jpg">
-                        <div class="share-box">
-                            <a href="#"><i class="fas fa-share-alt"></i></a>
-                            <ul class="fix">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="name text-center">
-                        <a href="https://www.desvert.com/monir-hosen/"><h3>Zumanur Rahaman</h3></a>
-                        <p>Operations Director (Print Media)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-md-12 col-sm-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="https://www.desvert.com/wp-content/uploads/2022/12/Untitled-1-5.jpg">
-                        <div class="share-box">
-                            <a href="#"><i class="fas fa-share-alt"></i></a>
-                            <ul class="fix">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="name text-center">
-                        <a href="https://www.desvert.com/monir-hosen/"><h3>Kamrul Hasan</h3></a>
-                        <p>Head of HR Department</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-md-12 col-sm-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="https://www.desvert.com/wp-content/uploads/2022/12/Untitled-1-4.jpg">
-                        <div class="share-box">
-                            <a href="#"><i class="fas fa-share-alt"></i></a>
-                            <ul class="fix">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="name text-center">
-                        <a href="https://www.desvert.com/monir-hosen/"><h3>Insan Evan</h3></a>
-                        <p>Head of Brand and Strategy</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-md-12 col-sm-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="https://www.desvert.com/wp-content/uploads/2022/12/Untitled-1-3.jpg">
-                        <div class="share-box">
-                            <a href="#"><i class="fas fa-share-alt"></i></a>
-                            <ul class="fix">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="name text-center">
-                        <a href="https://www.desvert.com/monir-hosen/"><h3>Salim Hosen</h3></a>
-                        <p>Head of Film & Media</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+                    endwhile;
+                endif
+            ?>
         </div>
     </div>
 </section>
