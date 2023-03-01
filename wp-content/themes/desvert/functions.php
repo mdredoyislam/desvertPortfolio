@@ -150,13 +150,30 @@ function admin_page_html() {
 			<th>Team Name</th>
 			<th>Profile</th>
 		</tr>
+		<?php
+			//$test_per_pages = $desvert_opt['show-testimonials'];
+			$i = 1;
+			$DesVert_testimonial = new WP_Query(array(
+				'post_type' => 'teams',
+				'posts_per_page' => -1,
+				'order' => 'DESC',
+				'offset' => 0,
+				//'category_name' => $category_name,
+			));
+			while ($DesVert_testimonial->have_posts()) : $DesVert_testimonial->the_post();
+		?>
 		<tr>
-			<td>01</td>
-			<td>MD REDOY ISLAM</td>
+			<td><?php echo $i; ?></td>
+			<td><?php the_title(); ?></td>
 			<td>10090</td>
 			<td>DesVert</td>
-			<td>Redoy</td>
+			<td><?php echo get_the_post_thumbnail('thumbnail', array( 'class' => 'alignright' )); ?></td>
 		</tr>
+		<?php
+
+		$i++;
+		endwhile;
+		?>
 	  </table>
 	</div>
 	<?php

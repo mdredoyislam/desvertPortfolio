@@ -1213,7 +1213,8 @@ body::-webkit-scrollbar-thumb {
 .single-services-wrap h4 {
     font-weight: 500;
     font-size: 24px;
-    line-height: 48px;
+    line-height: 26px;
+    margin-bottom: 20px;
 }
 .single-services-wrap p {
     font-weight: 300;
@@ -2195,6 +2196,183 @@ body::-webkit-scrollbar-thumb {
 .services-content a:focus, .services-content a:visited {
     border: 0;
 }
+.services-thumb {
+    position: relative;
+}
+.case-studies-btn {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0;
+    transition: all linear.3s;
+    z-index: 555;
+}
+.services-thumb:hover .case-studies-btn{
+    opacity: 1;
+}
+.services-thumb::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #181818;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all linear.3s;
+}
+.services-thumb:hover::after {
+    transform: scaleX(1);
+}
+#blog-section {
+    padding: 0 0 150px;
+}
+.blog-post-wrapper {
+    box-shadow: 0 0 10px #3333330d;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+.blog-post-thumb img {
+    height: 400px;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all linear.3s;
+    width: 100%;
+}
+.blog-post-thumb {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #5555551c;
+    margin-bottom: 30px;
+}
+.blog-post-wrapper:hover img {
+    transform: scale(1.1);
+}
+.blog-post-content p {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 28px;
+    color: #757576;
+    margin-bottom: 20px;
+}
+.blog-post-content a {
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #181818;
+    text-transform: lowercase;
+}
+.post-meta-info {
+    margin: 15px 0 25px 0;
+    align-items: center;
+}
+.post-meta-info li {
+    margin-right: 50px;
+}
+.post-meta-info li a svg {
+    font-size: 15px;
+    margin-right: 10px;
+    opacity: 0.5;
+}
+.post-meta-info li a {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #757575;
+}
+
+/* ========Widgets========= */
+.blog-widgets {
+    padding: 20px;
+    box-shadow: 0 0 10px #3333330d;
+    margin-bottom: 40px;
+}
+.blog-widgets label{
+    display: block;
+}
+.blog-widgets h3 {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+.search-form {
+    position: relative;
+}
+.blog-widgets input[type="search"] {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: rgb( 209, 211, 212 );
+    line-height: 1.333;
+    font-weight: 300;
+    background: transparent;
+    text-align: left;
+    border: 1px solid #f0f0f0fc;
+    font-family: 'Heebo', sans-serif;
+}
+.blog-widgets input[type="search"]:focus{
+    border: 1px solid #f0f0f0fc !important;
+    border-color: #f0f0f0fc !important;
+}
+.blog-widgets input[type="submit"] {
+    padding: 13px 23px;
+    font-size: 16px;
+    font-family: 'Heebo', sans-serif;
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 5px 5px 0;
+}
+.blog-widgets ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+.blog-widgets .cat-item,.cat-item a {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 25px;
+    color: #757575;
+    text-decoration: none;
+}
+.blog-widgets .cat-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #7575752b;
+    font-weight: 400;
+    text-align: end;
+}
+.blog-widgets .cat-item a {
+    text-align: left !important;
+    float: left !important;
+}
+.blog-widgets .tagcloud a {
+    background: #e6e6e6;
+    font-weight: 300;
+    font-size: 18px !important;
+    line-height: 25px;
+    color: #757575;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 5px !important;
+}
+.blog-widgets ul li a {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 25px;
+    color: #757575;
+    text-decoration: none;
+    text-transform: lowercase;
+}
 /*==================Services Single End===================*/
 /*============Responsive Area Start=============*/
 @media only screen and (max-width: 768px){
@@ -2339,6 +2517,7 @@ body::-webkit-scrollbar-thumb {
     .single-services-wrap h4 {
         font-size: 18px;
         line-height: 18px;
+    
         margin-bottom: 5px;
     }
     .single-services-wrap p {
